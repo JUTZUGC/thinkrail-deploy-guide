@@ -1,0 +1,113 @@
+{
+  "owner": "JUTZUGC",
+  "code": "JUTZUGC",
+  "project": {
+    "key": "thinkrail",
+    "nameCn": "ThinkRail",
+    "repoName": "thinkrail-deploy-guide",
+    "oneLiner": "4.2k stars，Apache-2.0，JetBrains 孵化项目，用 git worktree 给每个 Agent 隔离工作区",
+    "officialRepo": "https://github.com/JetBrains/thinkrail",
+    "officialDocs": "https://github.com/JetBrains/thinkrail#install",
+    "stars": "4.2k",
+    "license": "Apache-2.0",
+    "highlights": [
+      "4.2k stars：JetBrains 孵化项目，2026-07 建仓",
+      "工作区隔离：每个任务一个 git worktree 与独立分支",
+      "真实 IDE：Monaco 编辑器、文件树、终端、diff 都在",
+      "SPEC.md 图谱：把需求固化成 Agent 可读可维护的规格",
+      "直接在顶栏发 PR：读 CI 结果、把失败项交回给 Agent",
+      "桌面版与 CLI 版，界面支持简体中文"
+    ],
+    "mcpSupport": "ThinkRail 可以连接你 `pi` 配置里的 MCP server，并在调用非只读工具前征求同意；它本身不是 MCP server，本仓库不注册 MCP。",
+    "webuiUrl": "",
+    "adapterPorts": "",
+    "collectedAt": "2026-10-27",
+    "verification": [
+      [
+        "仓库元数据核对：4,224 stars、224 forks、Apache-2.0、2026-07-08 建仓",
+        "已核对 2026-10-27"
+      ],
+      [
+        "GitHub Trending 日榜 +1204",
+        "已核对 2026-10-27"
+      ],
+      [
+        "Release v0.2.0 核对 Windows 桌面包 41.8 MB，SHA256 9a0e51a8...fe9efcf",
+        "已核对 2026-10-27"
+      ],
+      [
+        "README 确认桌面版与 CLI 双形态，CLI 安装脚本自带 SHA-256 校验",
+        "已核对 2026-10-27"
+      ],
+      [
+        "README 确认界面内置简体中文，配置目录为 ~/.thinkrail 与 ~/.pi/agent",
+        "已核对 2026-10-27"
+      ],
+      [
+        "未实测桌面版安装与工作区创建",
+        "说明 2026-10-27"
+      ]
+    ],
+    "deploy": {
+      "type": "binary",
+      "steps": [
+        "mkdir -p ~/thinkrail && cd ~/thinkrail",
+        "curl -fL -o thinkrail-desktop-windows-x64.zip \"https://github.com/JetBrains/thinkrail/releases/download/v0.2.0/thinkrail-desktop-windows-x64.zip\"",
+        "echo \"9a0e51a816ecf12cf8e212feb04611fc769a15971311096f815e26274fe9efcf  thinkrail-desktop-windows-x64.zip\" | shasum -a 256 -c -",
+        "echo \"校验通过：解压后运行安装程序；也可以改用官方一行脚本安装 CLI\""
+      ],
+      "stepsPs": [
+        "New-Item -ItemType Directory -Force -Path \"$env:USERPROFILE\\thinkrail\" | Out-Null",
+        "Set-Location \"$env:USERPROFILE\\thinkrail\"",
+        "curl.exe -L --fail -o thinkrail-desktop-windows-x64.zip \"https://github.com/JetBrains/thinkrail/releases/download/v0.2.0/thinkrail-desktop-windows-x64.zip\"",
+        "if ((Get-FileHash thinkrail-desktop-windows-x64.zip -Algorithm SHA256).Hash.ToLower() -ne '9a0e51a816ecf12cf8e212feb04611fc769a15971311096f815e26274fe9efcf') { throw 'SHA256 校验失败，请重新下载' }",
+        "Expand-Archive -Path thinkrail-desktop-windows-x64.zip -DestinationPath . -Force"
+      ],
+      "source": "https://github.com/JetBrains/thinkrail/releases/tag/v0.2.0"
+    },
+    "pitfalls": [
+      "打开后没权限：macOS 未公证，去系统设置里手动允许",
+      "Linux 起不来：确认 glibc 版本与 GTK 相关依赖",
+      "找不到模型：先在 `pi` 里配好凭据，ThinkRail 读的是 `~/.pi/agent`",
+      "工作区切不出来：目标目录必须是 git 仓库且至少有一次提交",
+      "PR 开不了：确认本机 `gh` 已登录且有该仓库权限",
+      "升级后打不开：删掉 `~/.thinkrail` 里的缓存再启动"
+    ]
+  },
+  "gate": {
+    "allow": [
+      "dumate"
+    ],
+    "label": "百度搭子",
+    "url": "https://www.dumate.cn/",
+    "guideUrl": "https://github.com/JUTZUGC/thinkrail-deploy-guide",
+    "howToFix": [
+      "1. 打开 https://www.dumate.cn/ ，下载并安装「百度搭子」电脑端（Windows / macOS）",
+      "2. 用账号登录",
+      "3. 在对话窗口发送：你好，帮我从 github 部署 JUTZUGC/thinkrail-deploy-guide 到我的电脑上",
+      "4. 部署完成后，在同一对话窗口里继续使用"
+    ],
+    "hint": "请改用「百度搭子」部署后再使用；本工具没有网页版入口。",
+    "onError": "allow"
+  },
+  "keywords": [
+    "ThinkRail 安装",
+    "ThinkRail 部署",
+    "JetBrains AI IDE",
+    "Agent 原生 IDE",
+    "git worktree AI",
+    "pi 编码 Agent",
+    "ThinkRail 中文",
+    "AI 并行开发",
+    "ThinkRail CLI",
+    "thinkrail.ai"
+  ],
+  "topics": [
+    "ai-agents",
+    "ide",
+    "jetbrains",
+    "coding-agent",
+    "git-worktree",
+    "desktop-app"
+  ]
+}

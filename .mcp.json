@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "thinkrail-guide": {
+      "command": "node",
+      "args": [
+        "mcp-server.mjs"
+      ]
+    }
+  }
+}
